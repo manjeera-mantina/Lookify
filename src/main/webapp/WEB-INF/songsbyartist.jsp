@@ -7,13 +7,10 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
-<title>Top Five</title>
+<title>Lookify!</title>
 </head>
 <body>
-<br>
-<br>
-<div class="in-line"><h2 class="float-left">Top Five Songs</h2><span class="float-right"><a href="/dashboard">Dashboard</a></span></div>
-<hr>
+<div class="in-line"><h2 class="float-left">Songs by <c:out value="${searchterm}"></c:out></h2></div>
 <table>
     <thead>
         <tr>
@@ -32,5 +29,6 @@
 		</c:forEach>
     </tbody>
 </table>
+<div class="float-right"><a href="/dashboard">Dashboard</a></div>
 </body>
 </html>

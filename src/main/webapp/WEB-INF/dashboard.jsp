@@ -11,6 +11,7 @@
 </head>
 <body>
 <br>
+<p class="float-right"><a href="/dashboard">Dashboard</a></p>
 <br>
 <table>
     <thead>
@@ -18,9 +19,11 @@
             <th><a class="in-line" href="/songs/new">Add New</a></th>
             <th><a class="in-line" href="/top-ten">Top Ten</a></th>
             <th>
-	            <form class="in-line" action="/search" method="get">
+	            <form class="in-line" action="/search" method="post" modelAttribute="searchterm">
 	
-					<input class="in-line" type="text" id="artist" name="q" placeholder="Search"/>
+					<input class="in-line" type="text" id="artist" name="searchterm" placeholder="Search by artist"/>
+					
+					
 					<input class="in-line" class="button" type="submit" value="Submit"/>
 					
 				</form>
@@ -33,6 +36,7 @@
     <thead>
         <tr>
             <th>Name</th>
+            <th>Artist</th>
             <th>Rating</th>
             <th>Action</th>
         </tr>
@@ -41,6 +45,7 @@
 		<c:forEach var="song" items="${songs}">
 			<tr>
 				<td><a href="/songs/${song.id}"><c:out value="${song.title}"></c:out></a></td>
+				<td><c:out value="${song.artist}"></c:out></td>
 				<td><c:out value="${song.rating}"></c:out></td>
 				<td><a href="/songs/${song.id}/delete">delete</a></td>
 			</tr>	

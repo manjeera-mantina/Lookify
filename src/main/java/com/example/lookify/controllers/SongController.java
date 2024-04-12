@@ -36,10 +36,21 @@ public class SongController {
 		return "dashboard.jsp";
 	}
 	
-	@GetMapping("/search")
-	public String search() {
-		// TODO - finish later
-		return "dashboard.jsp";
+	@PostMapping("/search")
+	public String search(@ModelAttribute("searchterm") String artist, Model model) {
+		List<Song> filteredsongs = songService.findSongsByArtist(artist);
+		if(filteredsongs != null) {
+			model.addAttribute("songs", filteredsongs);
+			model.addAttribute("searchterm", artist);
+			return "songsbyartist.jsp";
+		}
+		else {
+//			List<Song> songs = songService.allSongs();
+//			model.addAttribute("songs", songs);
+//			songService.searchError(songs, result);
+			model.addAttribute("searchterm", artist);
+			return "dashboard.jsp";
+		}
 	}
 	
 	@GetMapping("/songs/new")
@@ -66,8 +77,10 @@ public class SongController {
 	
 	@GetMapping("/top-ten")
 	public String details(Model model) {
-		List<Song> songs = songService.topTen();
-		model.addAttribute("songs", songs);
+		List<Song> allSongs = songService.allSongs();
+		List<Song> sortedSongs = songService.sortByrating(allSongs);
+		List<Song> topFivesongs = songService.topFive(sortedSongs);
+		model.addAttribute("songs", topFivesongs);
 		return "top.jsp";
 	}
 	

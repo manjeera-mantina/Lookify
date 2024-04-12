@@ -77,7 +77,6 @@ public class Song {
 	public String getArtist() {
 		return artist;
 	}
-
 	public void setArtist(String artist) {
 		this.artist = artist;
 	}
@@ -88,5 +87,24 @@ public class Song {
 
 	public void setRating(Integer rating) {
 		this.rating = rating;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+	public void setCreatedAt() {
+		onCreate();
+	}
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+	public void setUpdatedAt() {
+		onUpdate();
 	}
 }

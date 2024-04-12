@@ -2,8 +2,10 @@ package com.example.lookify.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
 import com.example.lookify.models.Song;
 import com.example.lookify.repositories.SongRepo;
@@ -15,7 +17,11 @@ public class SongService {
 	public SongService(SongRepo songRepo) {
 		this.songRepo = songRepo;
 	}
-	
+//	public void searchError(List<Song> songs, BindingResult result) {
+//		if (songs.isEmpty()){
+//			result.rejectValue("searchterm", "na", "No songs of this artist!");
+//		}
+//	}
 	public List<Song> allSongs(){
 		return songRepo.findAll();
 	}
@@ -32,11 +38,21 @@ public class SongService {
 			return null;
 		}
 	}
-	
-	public List<Song> topTen() {
-		return songRepo.getTopTen();
+	public List<Song> findSongsByArtist(String artist) {
+		List<Song> songs = songRepo.findByArtist(artist);
+		if(songs.isEmpty()) {
+			return null;
+		}
+		else {
+			return songs;
+		}
 	}
-	
+	public List<Song> topFive(List<Song> songs) {
+		return songRepo.getTopFive(songs);
+	}
+	public List<Song> sortByrating(List<Song> songs) {
+		return songRepo.findByAndSort("rating", songs);
+	}
 	public Song updateSong(Song song) {
 		return songRepo.save(song);
 	}

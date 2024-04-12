@@ -12,7 +12,10 @@ import com.example.lookify.models.Song;
 public interface SongRepo extends CrudRepository<Song, Long> {
 	
 	List<Song> findAll();
+	List<Song> findByArtist(String artist);
 	
 	@Query(value = "SELECT * FROM songs", nativeQuery = true) 
-	List<Song> getTopTen();
+	List<Song> getTopFive(List<Song> songs);
+	@Query(value = "select song from Song song where song.rating like ?1%",nativeQuery = true)
+	List<Song> findByAndSort(String rating,List<Song> songs); 
 }

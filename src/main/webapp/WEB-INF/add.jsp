@@ -18,16 +18,17 @@
 	    <thead>
 	    	<tr>
 	            <td class="float-left">Title:</td>
-	            <td class="float-left">
+	            <td class="float-left">	            
 	            	<form:errors path="title" class="text-danger"/>
-					<form:input class="input" path="title"/>
+					<form:input type="text" class="input" path="title"/>
 	            </td>
 	        </tr>
 	        <tr>
 	            <td class="float-left">Artist:</td>
 	            <td class="float-left">
+	            
 	            	<form:errors path="artist" class="text-danger"/>
-					<form:input class="input" path="artist"/>
+					<form:input type="text" class="input" path="artist"/>
 	            </td>
 	        </tr>
 	        <tr>
@@ -42,11 +43,6 @@
 	        </tr>
 	    </thead>
 	</table>
-
-
-	
-	
-
 </form:form>
 </body>
 </html>
